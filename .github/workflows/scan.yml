@@ -3,7 +3,7 @@ name: Scheduled AWS Cost Leak Scan
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 7 * * *"   # runs daily at 07:00 UTC (12:30 IST approx)
+    - cron: "0 7 * * *"   # daily at 07:00 UTC (~12:30 IST)
 
 jobs:
   scan:
@@ -25,16 +25,24 @@ jobs:
 
       - name: Run scan
         env:
+          PYTHONPATH: .
           AWS_REGION: ap-south-1
           AWS_EC2_METADATA_DISABLED: "true"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
+          python -c "import sys; print('sys.path:', sys.path)"
+          echo "Repo root:"
+          ls -la
+          echo "Reports folder:"
+          ls -la reports || true
           python main.py --region ap-south-1 --snapshot-days 30 --output json,csv
 
-      - name: Upload reports
+      - name: Upload reports (JSON + CSV)
         uses: actions/upload-artifact@v4
         with:
           name: cost-leak-reports
-          path: reports/*.json
+          path: |
+            reports/*.json
+            reports/*.csv
 
