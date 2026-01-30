@@ -15,7 +15,7 @@ from reporting.report import save_csv, save_json
 
 def main():
     parser = argparse.ArgumentParser(
-        description="AWS Cost Leak Detector (Safe FinOps Scanner)"
+        description="AWS Cost Leak Detector"
     )
     parser.add_argument("--region", default="ap-south-1", help="AWS region to scan")
     parser.add_argument(
