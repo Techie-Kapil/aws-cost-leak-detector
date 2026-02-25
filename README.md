@@ -83,6 +83,11 @@ python main.py --region ap-south-1 --snapshot-days 30 --output json,csv
 ```
 
 
+### 💸 Example: Unused Elastic IP
+
+![Unused EIP](screenshots/githubworkflow.png)
+
+
 
 
 
