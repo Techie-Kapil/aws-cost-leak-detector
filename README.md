@@ -82,12 +82,70 @@ pip install -r requirements.txt
 python main.py --region ap-south-1 --snapshot-days 30 --output json,csv
 ```
 
+---
+## 📸 Screenshots
 
-### 💸 Example: Unused Elastic IP
+### 🔐 IAM Least Privilege Configuration
+![IAM Policy](screenshots/permission.png)
 
-![Unused EIP](screenshots/githubworkflow.png)
+---
+
+### 💸 Unused Elastic IP Detected
+![Unused Elastic IP](screenshots/usage.png)
+
+---
+
+### 📈 JSON Output Screenshot
 
 
+![Used Elastic IP](screenshots/usedusage.png)
 
+## CSV Report
+
+Reports are generated inside the /reports directory.
+
+---
+
+### ⚙ GitHub Actions Automated Scan
+
+
+<img src="screenshots/githubworkflow.png" width="600">
+
+---
+
+## 🏗 Architecture Overview
+
+```
+AWS Account
+     ↓
+Read-Only IAM User
+     ↓
+Python + Boto3 Scanner
+     ↓
+JSON/CSV Reports
+     ↓
+GitHub Actions (Scheduled Automation)
+```
+---
+
+## 🎯 Key Highlights
+
+- Production-safe cloud auditing tool
+
+- Security-first IAM design
+
+- Automated cost visibility
+
+- Dockerized for portability
+
+- CI/CD integrated
+
+---
+
+## 👨‍💻 Author
+
+Kapil
+
+Cloud & DevOps Enthusiast
 
 
